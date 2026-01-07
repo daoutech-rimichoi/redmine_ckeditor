@@ -11,7 +11,7 @@
 /coverage/
 
 # Rubygems (Build artifacts)
-*.gem
+#*.gem
 *.rbc
 
 # IDE & Editors
