@@ -1,0 +1,52 @@
+ko:
+  ckeditor_skin: 스킨
+  ckeditor_ui_color: UI 색
+  ckeditor_enter_mode: 엔터 모드
+  ckeditor_startup_show_blocks: 시작 시 블럭 표시 
+  ckeditor_toolbar_can_collapse: 도구 모음 축소 
+  ckeditor_toolbar_location: 도구 모음 위치
+  ckeditor_toolbar_buttons: 도구 모음 버튼
+  ckeditor_width: 폭 
+  ckeditor_height: 높이
+  add: 추가
+  remove: 삭제
+  separator: 구분
+  subgroup: 하위 그룹
+  line_break: 줄 바꿈
+
+  # Fieldsets
+  ck_general_settings: '일반 설정'
+  ck_toolbar_settings: '도구 모음 설정'
+  ck_mentions_settings: '멘션 설정'
+
+  # Mentions options
+  ck_user_mentions: '사용자 멘션'
+  ck_issue_mentions: '일감 멘션'
+  ck_mentions_project_only: '현재 프로젝트로 제안 제한'
+  ck_mentions_avatars: '제안에 사용자 아바타 표시'
+  ck_triggered_by: '트리거 문자'
+  ck_min_chars: '트리거를 위한 최소 글자 수'
+  ck_max_results: '최대 결과 수'
+  ck_mention_action: '멘션 동작'
+  ck_link_to_user: '사용자 링크'
+  ck_mailto_user: '사용자에게 메일 보내기'
+  ck_mention_format: '멘션 형식'
+  ck_user_name: '이름'
+  ck_user_login: '로그인 ID'
+  ck_user_mail: '이메일'
+  ck_issue_id: '일감 번호'
+  ck_issue_subject: '일감 번호 + 제목 (요약)'
+  ck_send_notification_to_user: '사용자에게 이메일 알림 전송 (일감에서만)'
+  ck_write_notification_to_journal: '일감 노트에 알림 작성 (일감에서만)'
+  ck_notification_subject: '제목'
+  ck_notification_msg: '메시지'
+  ck_notify_on: '알림 조건'
+  ck_highlight_notification_style: 'CSS 스타일로 알림 링크 강조'
+  ck_notify_journal: '댓글 작성'
+  ck_notify_creation: '일감 생성'
+  ck_notify_update: '설명 업데이트'
+  ck_notification_default_user_subject: '%issue_id%에서 멘션되었습니다'
+  ck_notification_default_user_msg: '%issue_notify_on% 후 일감 %issue_id_subject%에서 멘션되었습니다. 멘션된 내용은 다음과 같습니다:<br/><br/> <div style="padding:10px 14px 2px 14px;margin:10px;background:#EEF7FF;">%mention_sentence%</div>'
+  ck_notification_default_issue_msg: '이 일감이 %issue_notify_on% 후 일감 %issue_id_subject%에서 언급되었습니다. 언급된 내용은 다음과 같습니다:<br/><br/> <div style="padding:10px 14px 2px 14px;margin:10px;background:#EEF7FF;"><span>%mention_sentence%</span></div>'
+  ck_notification_user_placeholders: '사용 가능한 플레이스홀더: %issue_id%, %issue_id_subject%, %issue_notify_on%, %mention_sentence% (메시지 본문에서만 사용 가능).'
+  ck_notification_issue_placeholders: '사용 가능한 플레이스홀더: %issue_id%, %issue_id_subject%, %issue_notify_on%, %mention_sentence%.'

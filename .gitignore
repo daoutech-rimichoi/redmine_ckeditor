@@ -1,0 +1,39 @@
+# Ruby / Bundler
+/.bundle/
+/vendor/bundle/
+/lib/bundler/man/
+
+# Logs and Databases
+/log/
+/tmp/
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/coverage/
+
+# Rubygems (Build artifacts)
+*.gem
+*.rbc
+
+# IDE & Editors
+.idea/
+.vscode/
+*.swp
+*~
+.project
+.settings
+.classpath
+
+# OS Generated
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Redmine Plugin Specific
+# Ignore local configuration files, keep examples
+/config/*.yml
+!/config/*.yml.example
+
+# Ignore Gemfile.lock in plugins to allow dependencies to be resolved by the host Redmine
+# (If you need to lock versions specifically for tests, you can comment this out)
+Gemfile.lock
