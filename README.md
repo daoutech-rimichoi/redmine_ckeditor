@@ -1,30 +1,74 @@
-<h3>Fork of Redmine CK Editor plugin</h3>
+# Redmine CKEditor 플러그인 (Daoutech 커스텀 버전)
 
-<h5>Source:</h5>
-<p>https://github.com/a-ono/redmine_ckeditor</p>
+## 버전 정보
 
-<h5>Version</h5>
-<p>Based on 1.2.3</p>
+- **플러그인 버전**: 1.2.7, Daoutech 0.0.1
+- **CKEditor 버전**: 4.22.1
+- **기반 버전**: [redmine_ckeditor 1.2.3](https://github.com/a-ono/redmine_ckeditor)
+- **지원 Redmine 버전**: 4.0.0 이상 (Redmine 6.X 테스트 완료)
 
-<h5>Reason:</h5>
-<p>After navigating to plugin settings of CK Editor, internal server error (500) occured. This was due to missing variable <i>ckeditor_javascripts</i> in the view template. This is a know problem - see https://github.com/a-ono/redmine_ckeditor/issues/308 for more details.</p>
+## 주요 수정 내용
 
-<h5>Changes:</h5>
-<ul>
-<li><b>'app/views/settings/_ckeditor.html.erb'</b> - line 1 - missing variable <i>ckedittor_javascripts</i> was replaced by <i>RedmineCkeditor::Helper.instance_method(:ckeditor_javascripts).bind(self).call</i> as recomended in the issue 308 (https://github.com/a-ono/redmine_ckeditor/issues/308).</li>
-<li><b>'lib/redmine_ckeditor/application_helper_patch.rb'</b> - method <i>format_activity_description</i> was wrapped in <i>def self.included(base)</i> and <i>base.class_eval do</i>. Before this fix this method was correctly redefined only if no other Application Helper patches were present. Because we have many Application Helper patches in Projectino and RedmineX solutions, this redefinition did not work correctly.</li>
-<li><b>assets/ckeditor</b> - version of CK Editor (which is part of the plugin) was upgraded to 4.15.1 (it is the last v4 version). This version enables copy/paste functionality also in Chrome browser for Android.</li>
-</ul>
+### 1. 설정 페이지 오류 수정
+- `ckeditor_javascripts` 변수 누락으로 인한 500 오류 해결
+- 참조: [issue #308](https://github.com/a-ono/redmine_ckeditor/issues/308)
 
-<h5>Changes due to CK Editor upgrade to 4.15.1</h5>
-<ul>
-<li><b>'assets/ckeditor/config.js'</b> - line 7 - all required plugins added to the <i>config.options</i> object. Part of the CK Editor 4.15.1 is also <i>exportpdf</i> plugin, which is a premium (paid) feature. This means we need to disable the plugin. This can be (theoretically) done by the <i>removePlugins</i> object, however this configuration did not work and therefore <i>config.options</i> was used instead.</li>
-</ul>
+### 2. CKEditor 업그레이드
+- 버전 4.22.1로 업그레이드
+- Android Chrome 브라우저 복사/붙여넣기 지원
+- 유료 플러그인(`exportpdf`) 비활성화
 
-<h5>Changes for Redmine version 5.X.X support</h5>
-<ul>
-<li><b>'init.rb'</b> - lines 2 to 7 - this block of code replaced original <i>require 'redmine_ckeditor'</i> statement. This code ensures support of zeitwerk loader used in Redmine 5.X.X.</li>
-<li><b>lib/redmine_ckeditor.rb</b> - lines 141 to 150 - paths to required modules were updated inorder to support loading by the zeitwerk loader used in Redmine 5.X.X.</li>
-<li><b>lib/redmine_ckeditor/pdf_patch.rb</b> - line 2 and line 51 - name of this module was changed from <i>PDFPatch</i> to <i>PdfPatch</i> in order to respect Ruby naming conventions (this is also strictly required byt the zeitwerk loader used in Redmine 5.X.X).</li>
-<li><b>lib/redmine_ckeditor/wiki_formatting/formatter.rb</b> - lines 27 to 37 - <i>ActionView::Base</i> object in Rails 6.X used in Redmine 5.X.X as default does not contain originally used <i>white_list_sanitizer</i> method which was deprecated. The original code was replaced by <i>if</i> statement which uses correct method depending on the Rails version.</li>
-</ul>
+### 3. Redmine 5.X/6.X 호환성
+- Zeitwerk 로더 지원
+- Rails 6.X 호환성 개선
+- Deprecated 메서드 대체
+
+## 설치 방법
+
+```bash
+# 1. 플러그인 디렉토리로 이동
+cd {REDMINE_ROOT}/plugins
+
+# 2. 플러그인 복사 또는 클론
+# 플러그인 디렉토리명은 반드시 'redmine_ckeditor'여야 합니다
+
+# 3. Redmine 루트로 이동
+cd {REDMINE_ROOT}
+
+# 4. 의존성 설치
+bundle install --without development test
+
+# 5. 플러그인 마이그레이션 실행
+bundle exec rake redmine:plugins:migrate NAME=redmine_ckeditor RAILS_ENV=production
+
+# 6. 웹서버 재시작
+# Apache/Passenger의 경우
+touch tmp/restart.txt
+
+# Puma/Unicorn의 경우
+sudo systemctl restart redmine
+```
+
+## 삭제 방법
+
+```bash
+# 1. Redmine 루트로 이동
+cd {REDMINE_ROOT}
+
+# 2. 플러그인 마이그레이션 롤백
+bundle exec rake redmine:plugins:migrate NAME=redmine_ckeditor VERSION=0 RAILS_ENV=production
+
+# 3. 플러그인 디렉토리 삭제
+rm -rf plugins/redmine_ckeditor
+
+# 4. 웹서버 재시작
+# Apache/Passenger의 경우
+touch tmp/restart.txt
+
+# Puma/Unicorn의 경우
+sudo systemctl restart redmine
+```
+
+## 라이선스
+
+원본 프로젝트의 라이선스를 따릅니다.
