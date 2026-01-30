@@ -99,10 +99,11 @@ module RedmineCkeditor
 
       redmine_application_css =
         if Redmine::VERSION::MAJOR >= 6
-          File.join(Rails.root, 'public', 'asset', 'application*.css')
+          # Redmine 6.x: Rails 7 Asset Pipeline (public/assets/)
           files = Dir.glob(File.join(Rails.root, 'public', 'assets', 'application*.css'))
           files.first ? ActionController::Base.helpers.asset_path(files.first.split('/').last) : ''
         else
+          # Redmine 5.x: Rails 6 Sprockets (public/stylesheets/)
           stylesheet_path("application")
         end
 

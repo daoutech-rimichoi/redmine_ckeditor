@@ -18,8 +18,8 @@ Redmine::Plugin.register :redmine_ckeditor do
   name 'Redmine CKEditor plugin'
   author 'rimichoi'
   description 'This is a CKEditor plugin for Redmine'
-  version '1.2.7, Daoutech 0.0.1'
-  requires_redmine :version_or_higher => '6.0.0'
+  version '1.2.7, Daoutech 0.0.2'
+  requires_redmine :version_or_higher => '5.0.0'
   url 'https://github.com/daoutech-rimichoi/redmine_ckeditor'
   author_url 'mailto:rimichoi@daou.co.kr'
 
